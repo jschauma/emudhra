@@ -115,8 +115,7 @@ native backend, which then rejects the connection in
 all cases:
 
 ```
-$ CURL_SSL_BACKEND=secure-transport sh emudhra.sh
-/tmp/cert.pem.bad 
+$ CURL_SSL_BACKEND=secure-transport sh emudhra.sh /tmp/cert.pem.bad 
 Used CA file: 
 $ 
 ```
@@ -131,6 +130,7 @@ $ cargo run
 $ cargo run -- /tmp/cert.pem.bad 
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.17s
      Running `target/debug/rs /tmp/cert.pem.bad`
+$
 ```
 
 Somewhere in its dependencies, Rust does actual
