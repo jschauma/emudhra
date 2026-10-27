@@ -148,6 +148,28 @@ blocklist checking on the compromised intermediates,
 so even with a bundle that trusts eMudhra's root, it
 fails to connect.
 
+### Git
+
+```
+$ sh git.sh
+CAfile: /etc/ssl/cert.pem
+BAD: successful connection to g3.emsign.filippo.io
+CAfile: /etc/ssl/cert.pem
+BAD: successful connection to aaa.emsign.filippo.io
+$
+```
+
+Or:
+
+```
+$ TOOL_PATH=/usr/bin/git sh git.sh
+CAfile: /etc/ssl/cert.pem
+BAD: successful connection to g3.emsign.filippo.io
+CAfile: /etc/ssl/cert.pem
+BAD: successful connection to aaa.emsign.filippo.io
+$
+```
+
 ### All together
 
 ```
