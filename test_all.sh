@@ -4,6 +4,21 @@ set -eu
 
 TOOL_FILTER=${1:-}
 
+find_all_on_path() (
+	tool=$1
+	remaining_path=$PATH:
+
+	while [ -n "$remaining_path" ]; do
+		dir=${remaining_path%%:*}
+		remaining_path=${remaining_path#*:}
+		[ -n "$dir" ] || dir=.
+
+		if [ -f "$dir/$tool" ] && [ -x "$dir/$tool" ]; then
+			printf '%s\n' "$dir/$tool"
+		fi
+	done
+)
+
 test_tool() {
 	tool_to_test=$1
 	extension=$2
@@ -13,11 +28,11 @@ test_tool() {
 		return 0
 	fi
 
-	if ! which "$tool_to_test" >/dev/null 2>&1 ; then
+	if ! command -v "$tool_to_test" >/dev/null 2>&1 ; then
 		echo "No '$tool_to_test' found"
 		echo
 	else
-		for location in $(which -a "$tool_to_test") ; do
+		find_all_on_path "$tool_to_test" | while IFS= read -r location; do
 			echo "### Testing $tool_to_test from $location..."
 			( "$location" --version 2>/dev/null || "$location" version 2>/dev/null ) | head -n 2 || true
 
