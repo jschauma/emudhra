@@ -9,13 +9,17 @@ browser.  So you need to check [all the
 places](https://github.com/NixOS/nixpkgs/issues/576475)
 a bundle could hide.  What a pain!
 
-I don't have a solution for you, sorry.  But if you
-want to just check whether a specific language does
-the right thing out of the box, here are some simple
-example programs.  Each one will silently return
-nothing (because this is the Unix way) if everything's
-peachy and report an error if it can connect to the
-known bad sites.
+I don't have a solution for you, sorry -- well, you
+_could_ run [this
+tool](https://github.com/jschauma/emudhra-cleanup) to
+detect and fix bundles.
+
+But if you want to just check whether a specific
+language does the right thing out of the box, here are
+some simple example programs.  Each one will silently
+return nothing (because this is the Unix way) if
+everything's peachy and report an error if it can
+connect to the known bad sites.
 
 The tool will use whatever the default is for the
 given framework/language, but you can also specify an
